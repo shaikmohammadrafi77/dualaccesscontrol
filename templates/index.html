@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Home · Dual Access Control{% endblock %}
+{% block content %}
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Secure Storage & Sharing</h5>
+          <p class="card-text">Encrypt files with AES-GCM and protect access using attribute-based policies.</p>
+          <a class="btn btn-primary" href="/upload"><i class="bi bi-upload"></i> Upload a file</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Dual Verification</h5>
+          <p class="card-text">Lightweight challenges gate downloads to resist EDoS attacks.</p>
+          <a class="btn btn-outline-primary" href="/files"><i class="bi bi-folder2"></i> View files</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Upload · Dual Access{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="mb-3"><i class="bi bi-upload"></i> Upload File</h4>
+          <form method="post" action="/upload" enctype="multipart/form-data" class="vstack gap-3">
+            <div>
+              <label class="form-label">Choose file</label>
+              <input type="file" class="form-control" name="file" required />
+            </div>
+            <div>
+              <label class="form-label">Access Policy</label>
+              <input name="policy" class="form-control" placeholder="Role:Owner AND Department:HR" />
+              <div class="form-text">Attributes required to access this file.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

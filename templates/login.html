@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Login · Dual Access{% endblock %}
+{% block content %}
+  <div class="row justify-content-center align-items-center" style="min-height:65vh;">
+    <div class="col-md-5">
+      <div class="card shadow-lg border-0" style="overflow:hidden;">
+        <div class="position-relative text-center p-4" style="background:linear-gradient(135deg,#0f172a,#1e293b); color:#e6e8ec;">
+          <img src="/static/logo.svg" alt="logo" width="64" height="64" class="brand-glow mb-2" />
+          <h3 class="mb-0">Dual Access</h3>
+          <small class="text-muted">Secure Cloud Storage & Sharing</small>
+        </div>
+        <div class="card-body p-4">
+          <div class="text-center mb-3">
+            <i class="bi bi-person-circle" style="font-size:52px;color:#9dbbff;"></i>
+            <h4 class="mt-2">Welcome back</h4>
+            <p class="text-muted mb-0">Sign in to continue</p>
+          </div>
+          <form method="post" action="/login" class="vstack gap-3" onsubmit="return showLoading(this)">
+            <div>
+              <label class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text bg-transparent text-muted"><i class="bi bi-person"></i></span>
+                <input name="username" class="form-control" placeholder="authority or owner" required />
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-transparent text-muted"><i class="bi bi-lock"></i></span>
+                <input id="pwd" name="password" type="password" class="form-control" placeholder="password" required />
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePwd()"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember" name="remember" />
+              <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+            <button id="loginBtn" type="submit" class="btn btn-primary w-100">
+              <span class="spinner-border spinner-border-sm me-2 d-none" id="loginSpinner"></span>
+              Login
+            </button>
+          </form>
+          <p class="text-muted mt-3 mb-0 text-center">Try: authority/password or owner/password</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showLoading(form){
+      const spinner=document.getElementById('loginSpinner');
+      spinner.classList.remove('d-none');
+      document.getElementById('loginBtn').setAttribute('disabled','disabled');
+      return true;
+    }
+    function togglePwd(){
+      const p=document.getElementById('pwd');
+      p.type = p.type === 'password' ? 'text' : 'password';
+    }
+    // Error toast
+    const err = {{ (error|tojson) if error else 'null' }};
+    if(err){
+      const div=document.createElement('div');
+      div.className='toast align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-3';
+      div.setAttribute('role','alert');
+      div.innerHTML = '<div class="d-flex"><div class="toast-body">'+err+'</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>';
+      document.body.appendChild(div);
+      const t = new bootstrap.Toast(div);
+      t.show();
+    }
+  </script>
+{% endblock %}
+
+

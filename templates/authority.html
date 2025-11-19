@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Authority · Dual Access{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0"><i class="bi bi-shield-lock"></i> Authority Console</h4>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr><th>User</th><th>Type</th><th>Attributes</th><th>Status</th><th style="width:360px;">Actions</th></tr>
+      </thead>
+      <tbody>
+      {% for u in users %}
+        <tr>
+          <td>{{ u.username }}</td>
+          <td><span class="badge text-bg-secondary">{{ u.type }}</span></td>
+          <td><code>{{ u.attributes }}</code></td>
+          <td>
+            {% if u.active %}
+              <span class="badge text-bg-success">ACTIVE</span>
+            {% else %}
+              <span class="badge text-bg-danger">INACTIVE</span>
+            {% endif %}
+          </td>
+          <td>
+            <form class="d-inline-flex gap-2" method="post" action="/authority/issue">
+              <input type="hidden" name="userId" value="{{ u.user_id }}" />
+              <input name="attributes" class="form-control form-control-sm" placeholder="Role:User,Department:HR" />
+              <button class="btn btn-sm btn-primary">Issue</button>
+            </form>
+            <form class="d-inline" method="post" action="/authority/revoke">
+              <input type="hidden" name="userId" value="{{ u.user_id }}" />
+              <button class="btn btn-sm btn-outline-danger">Revoke</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+

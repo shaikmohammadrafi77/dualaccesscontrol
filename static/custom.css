@@ -1,0 +1,18 @@
+body { color: #e6e8ec; background: linear-gradient(120deg,#0b0d12,#0e1320,#0b0d12); background-size: 200% 200%; animation: bg-pan 16s ease infinite; }
+@keyframes bg-pan { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.card { background-color: rgba(21,25,35,0.9); border: 1px solid #222839; backdrop-filter: blur(6px); }
+.navbar-dark { background-color: rgba(15,18,26,0.9) !important; backdrop-filter: blur(4px); }
+.form-control, .form-select { background-color: #0e131c; color: #e6e8ec; border-color: #273043; }
+.form-control::placeholder { color: #8a93a6; }
+.table { color: #e6e8ec; }
+.table thead { background-color: #0f121a; }
+.btn-primary { background-color: #3b82f6; border-color: #3b82f6; box-shadow: 0 0 0 0 rgba(59,130,246,0.6); transition: box-shadow .2s ease; }
+.btn-primary:hover { box-shadow: 0 0 20px 4px rgba(59,130,246,0.25); }
+.btn-outline-primary { border-color: #3b82f6; color: #9dbbff; }
+.btn-outline-primary:hover { background:#3b82f6; color:#fff; }
+code { color: #9dbbff; }
+
+/* Logo glow */
+.brand-glow { filter: drop-shadow(0 0 24px rgba(157,187,255,.35)); }
+
